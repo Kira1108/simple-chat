@@ -1,7 +1,5 @@
 from .base_chat import Chat
 
-
-
 class StoryChat(Chat):
     
     def __init__(self, 
@@ -33,6 +31,4 @@ class StoryChat(Chat):
                 
                 Write in Chinese, An adult short story, 5000 Chinese characters.
                 """.format(topic = topic)}
-        ]
-
-        
+        ]        
