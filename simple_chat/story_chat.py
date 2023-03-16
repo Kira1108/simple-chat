@@ -7,7 +7,6 @@ class StoryChat(Chat):
                 story_style = "miserable, sad",
                 story_purpose = 'high-converting',
                 topic = "Hard working and Luckiness",
-                
                 *args, **kwargs):
         super().__init__(*args, **kwargs)
 

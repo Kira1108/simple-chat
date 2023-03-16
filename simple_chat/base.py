@@ -12,6 +12,8 @@ from simple_chat.params import ChatParams
 config = get_config()
 openai.api_key = config.openai_api_key
 
+def set_openai_api_key(api_key:str):
+    openai.api_key = api_key
 
 def print_log(message):
     table = Table(title="ChatLog",show_lines = True)
