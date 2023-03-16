@@ -6,6 +6,8 @@ An OpenAI chat wrapper, simplify chatting with python.
 > No optimization for maintaining chat history.      
 > You should pay special attention to tokens counts.    
 
+*TODO: Optimize chat history management with langchain.*
+
 ## 1. Export openai api key
 ```bash
 export OPENAI_API_KEY="your_openai_api_key"
