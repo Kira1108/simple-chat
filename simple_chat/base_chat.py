@@ -42,12 +42,21 @@ class Chat:
     which offers a set of chatting friendly interface as if you are using chatGPT.
     """
 
-    def __init__(self, verbose = True, print_role = False, print_width = 90):
+    def __init__(self, model = "gpt-3.5-turbo", verbose = True, print_role = False, print_width = 90):
+        self.model = model
         self.message = []
         self.eager = False
         self.verbose = verbose
         self.print_role = print_role
         self.print_width = print_width
+
+    @classmethod
+    def gpt4(cls):
+        return cls(model = "gpt-4")
+    
+    @classmethod
+    def gpt35(cls):
+        return cls(model = "gpt-3.5-turbo")
 
     def role_chat(self, role, content):
         # generate chatting message object
@@ -97,7 +106,7 @@ class Chat:
         print out openai response content and append it to chat message list
         """
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model=self.model,
             messages=self.message
         )
         role = response['choices'][0]['message']['role']
