@@ -1,4 +1,4 @@
-from .base_chat import Chat
+from .base import Chat
 
 class StoryChat(Chat):
     

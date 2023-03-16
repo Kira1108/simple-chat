@@ -6,6 +6,7 @@ from typing import TypedDict
 import textwrap
 from rich.console import Console
 from rich.table import Table
+from simple_chat.params import ChatParams
 
 
 config = get_config()
@@ -42,21 +43,43 @@ class Chat:
     which offers a set of chatting friendly interface as if you are using chatGPT.
     """
 
-    def __init__(self, model = "gpt-3.5-turbo", verbose = True, print_role = False, print_width = 90):
-        self.model = model
+    def __init__(self, 
+                 params:ChatParams = None, 
+                 verbose:bool = True, 
+                 print_role:bool = False, 
+                 print_width:int = 90):
+        
+        self.params = params if params else ChatParams.gpt3()
         self.message = []
         self.eager = False
         self.verbose = verbose
         self.print_role = print_role
-        self.print_width = print_width
+        self.print_width = print_width 
 
     @classmethod
-    def gpt4(cls):
-        return cls(model = "gpt-4")
+    def gpt4(cls, **kwargs):
+        if 'model' in kwargs:
+            del kwargs['model']
+        params = ChatParams.gpt4(**kwargs)
+        return cls(params)
     
     @classmethod
-    def gpt35(cls):
-        return cls(model = "gpt-3.5-turbo")
+    def gpt3(cls, **kwargs):
+        if 'model' in kwargs:
+            del kwargs['model']
+        params = ChatParams.gpt3(**kwargs)
+        return cls(params)
+
+    def flex(self):
+        self.set_param('temperature', 1.5)
+        return self
+    
+    def freedom(self):
+        self.set_param('temperature', 2)
+        return self
+    
+    def set_param(self, param, value):
+        setattr(self.params, param, value)
 
     def role_chat(self, role, content):
         # generate chatting message object
@@ -106,8 +129,8 @@ class Chat:
         print out openai response content and append it to chat message list
         """
         response = openai.ChatCompletion.create(
-            model=self.model,
-            messages=self.message
+            messages=self.message,
+            **self.params.dict()
         )
         role = response['choices'][0]['message']['role']
         content = response['choices'][0]['message']['content']
