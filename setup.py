@@ -6,4 +6,4 @@ setup(name='simple_chat',
       description='A wrapper of openai gpt-3.5 api',
       author='The fastest man alive.',
       packages=find_packages(),
-      install_requires=[])
+      install_requires=["openai>=0.27.0","rich"])
