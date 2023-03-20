@@ -6,7 +6,11 @@ An OpenAI chat wrapper, simplify chatting with python.
 > No optimization for maintaining chat history.      
 > You should pay special attention to tokens counts.    
 
-*TODO: Optimize chat history management with langchain.*
+*TODO: Optimize chat history management with langchain.*    
+
+You don't always need a langchain to maintin chat history, right?
+You don't know how openai maintain chatGPT's memroy, right?
+So why bother use langchain....,why, why, why......
 
 ## 1. Export openai api key
 ```bash
