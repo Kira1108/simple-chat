@@ -8,9 +8,14 @@ An OpenAI chat wrapper, simplify chatting with python.
 
 *TODO: Optimize chat history management with langchain.*    
 
-You don't always need a langchain to maintin chat history, right?
-You don't know how openai maintain chatGPT's memroy, right?
-So why bother use langchain....,why, why, why......
+You don't always need a langchain to maintin chat history, right?    
+You don't know how openai maintain chatGPT's memroy, right?    
+So why bother use langchain....,why, why, why......     
+
+2023.3.21:    
+> Summarizing all previous chatting history is **too expensive**, the summarization itself costs many tokens.       
+> If chatGPT search pervious conversation context(embedding similartiy approach), that costs many tokens too. **too expensive**.     
+> I can use langchain, but I don't have enough money to do that.       
 
 ## 1. Export openai api key
 ```bash
