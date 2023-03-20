@@ -14,8 +14,10 @@ So why bother use langchain....,why, why, why......
 
 2023.3.21:    
 > Summarizing all previous chatting history is **too expensive**, the summarization itself costs many tokens.       
-> If chatGPT search pervious conversation context(embedding similartiy approach), that costs many tokens too. **too expensive**.     
+> If chatGPT search pervious conversation context(embedding similartiy approach), that costs many tokens too, **too expensive**.     
 > I can use langchain, but I don't have enough money to do that.       
+
+*And I found this answer*
 
 ## 1. Export openai api key
 ```bash
