@@ -7,6 +7,7 @@ import textwrap
 from rich.console import Console
 from rich.table import Table
 from simple_chat.params import ChatParams
+from simple_chat.printer import HtmlPrinter,is_notebook
 
 
 config = get_config()
@@ -48,15 +49,19 @@ class Chat:
     def __init__(self, 
                  params:ChatParams = None, 
                  verbose:bool = True, 
-                 print_role:bool = False, 
-                 print_width:int = 90):
+                 print_role:bool = False,
+                 printer = None):
         
         self.params = params if params else ChatParams.gpt3()
         self.message = []
         self.eager = False
         self.verbose = verbose
         self.print_role = print_role
-        self.print_width = print_width 
+
+        if printer:
+            self.printer = printer
+        else:
+            self.printer = HtmlPrinter() if is_notebook() else print
 
     @classmethod
     def gpt4(cls, **kwargs):
@@ -141,21 +146,9 @@ class Chat:
             if self.print_role:
                 print(f"{role}:\n")
 
-            self._print_wrapped(content)
+            self.printer(content)
 
         self.message.append({'role':role,'content':content})
-
-    def _print_wrapped(self, content):
-        wrapped = textwrap.wrap(
-                content, 
-                width = self.print_width, 
-                expand_tabs = False, 
-                replace_whitespace=False, 
-                break_long_words = False, 
-                drop_whitespace=False, 
-                break_on_hyphens=False, 
-                tabsize = 4)
-        print("".join(wrapped))
 
     def show(self):
         print_log(self.message)
