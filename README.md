@@ -17,7 +17,8 @@ So why bother use langchain....,why, why, why......
 > If chatGPT search pervious conversation context(embedding similartiy approach), that costs many tokens too, **too expensive**.     
 > I can use langchain, but I don't have enough money to do that.       
 
-*And I found this answer*
+*And I found this answer*   
+[stack-exchange-answer](https://ai.stackexchange.com/questions/38150/how-does-chatgpt-retain-the-context-of-previous-questions)
 
 ## 1. Export openai api key
 ```bash
