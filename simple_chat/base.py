@@ -50,13 +50,15 @@ class Chat:
                  params:ChatParams = None, 
                  verbose:bool = True, 
                  print_role:bool = False,
-                 printer = None):
+                 printer = None,
+                 return_messages = False):
         
         self.params = params if params else ChatParams.gpt3()
         self.message = []
         self.eager = False
         self.verbose = verbose
         self.print_role = print_role
+        self.return_messages = return_messages
 
         if printer:
             self.printer = printer
@@ -97,7 +99,7 @@ class Chat:
         
         # execute the content if eager mode is on
         if self.eager:
-            self.openai_request()
+            return self.openai_request()
 
     def go(self):
         """Set chatting mode on"""
@@ -149,6 +151,9 @@ class Chat:
             self.printer(content)
 
         self.message.append({'role':role,'content':content})
+
+        if self.return_messages:
+            return content
 
     def show(self):
         print_log(self.message)
